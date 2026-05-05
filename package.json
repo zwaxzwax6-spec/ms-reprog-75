@@ -1,0 +1,12 @@
+{
+  "name": "ms-reprog-75",
+  "version": "1.0.0",
+  "description": "Site MS REPROG 75 — reprogrammation moteur, atelier + fichiers à distance.",
+  "private": true,
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "stripe": "^14.0.0"
+  }
+}
