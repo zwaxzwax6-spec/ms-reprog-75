@@ -617,7 +617,7 @@ img { max-width: 100%; display: block; }
 .prestation-mockup {
   position: relative;
   height: 140px;
-  margin: 0 -8px 8px;
+  margin: 0 -8px 24px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1261,7 +1261,7 @@ img { max-width: 100%; display: block; }
   }
   .prestation-mockup {
     height: 110px;
-    margin: 0 -4px 4px;
+    margin: 0 -4px 16px;
   }
   .prestation-title { font-size: 1.35rem; }
   .prestation-desc { font-size: 13px; }
@@ -1451,7 +1451,7 @@ img { max-width: 100%; display: block; }
   pointer-events: none;
 }
 .catalog-card-body {
-  padding: 24px 26px 26px;
+  padding: 36px 26px 26px;
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -1523,7 +1523,7 @@ img { max-width: 100%; display: block; }
 }
 @media (max-width: 640px) {
   .catalog-grid { grid-template-columns: 1fr; gap: 12px; }
-  .catalog-card-body { padding: 20px 22px 22px; }
+  .catalog-card-body { padding: 30px 22px 22px; }
   .catalog-card-title { font-size: 20px; }
   .catalog-card-price { font-size: 20px; }
 }
