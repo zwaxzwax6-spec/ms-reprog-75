@@ -5,9 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MS REPROG 75 — L'art de la performance sur mesure</title>
 <meta name="description" content="Reprogrammation moteur, dépollution FAP/EGR/AdBlue, Stage 1 à 3, E85. Logiciels officiels, garantie à vie. Atelier à Morangis (91) + intervention 24/7 partout en France.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@1&family=Barlow:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="hero-poster.webp" fetchpriority="high" type="image/webp">
+<link rel="preload" as="font" type="font/woff2" href="fonts/barlow-400.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="fonts/instrument-serif-italic.woff2" crossorigin>
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -39,9 +39,9 @@
 
 <!-- ═══ SECTION 1 : HERO ═══ -->
 <section class="hero" id="accueil">
-  <video class="hero-video" autoplay loop muted playsinline preload="metadata"
-    poster="img-03-engine-closeup.png" width="1920" height="1080"
-    src="https://res.cloudinary.com/duia2hrlv/video/upload/v1777925956/hf_20260504_201505_287623ab-7941-4812-9215-9272377e604a_wxrno3.mp4">
+  <video class="hero-video" loop muted playsinline preload="none"
+    poster="hero-poster.webp" width="1920" height="1080"
+    data-src="https://res.cloudinary.com/duia2hrlv/video/upload/v1777925956/hf_20260504_201505_287623ab-7941-4812-9215-9272377e604a_wxrno3.mp4">
   </video>
   <div class="hero-overlay"></div>
   <div class="hero-overlay-left"></div>
@@ -301,67 +301,85 @@
   </div>
 </aside>
 
-<script src="cart.js"></script>
+<script src="cart.js" defer></script>
 <script>
 (function() {
   const title = "Le Moteur Que Vous Méritez";
-  const words = title.split(" ");
   const el = document.getElementById("heroTitle");
+  const words = title.split(" ");
+  const frag = document.createDocumentFragment();
   words.forEach((word, i) => {
     const span = document.createElement("span");
     span.className = "blur-word";
     span.style.animationDelay = (0.3 + i * 0.12) + "s";
     span.textContent = word;
-    el.appendChild(span);
-    if (i < words.length - 1) el.appendChild(document.createTextNode(" "));
+    frag.appendChild(span);
+    if (i < words.length - 1) frag.appendChild(document.createTextNode(" "));
   });
+  el.appendChild(frag);
 })();
+
 let _navScrolled = false;
+const navbarEl = document.getElementById("navbar");
 window.addEventListener("scroll", () => {
   const next = window.scrollY > 40;
   if (next !== _navScrolled) {
     _navScrolled = next;
-    document.getElementById("navbar").classList.toggle("scrolled", next);
+    navbarEl.classList.toggle("scrolled", next);
   }
 }, { passive: true });
-const revealObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) { entry.target.classList.add("visible"); revealObserver.unobserve(entry.target); }
-  });
-}, { threshold: 0.12, rootMargin: "0px 0px -80px 0px" });
-document.querySelectorAll(".reveal").forEach(el => revealObserver.observe(el));
 
-// Pause hero video when scrolled out of view (libère décodeur GPU/CPU sur mobile)
-const heroVideo = document.querySelector('.hero-video');
-if (heroVideo) {
-  const videoObserver = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) { heroVideo.play().catch(() => {}); }
-      else { heroVideo.pause(); }
-    });
-  }, { threshold: 0.1 });
-  videoObserver.observe(heroVideo);
-}
-
-const isDesktop = window.matchMedia('(min-width: 980px)').matches;
-const supportsParallax = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-if (isDesktop && supportsParallax) {
-  const parallaxImages = document.querySelectorAll('.parallax-img');
-  let ticking = false;
-  function updateParallax() {
-    parallaxImages.forEach(img => {
-      const container = img.parentElement;
-      const rect = container.getBoundingClientRect();
-      if (rect.bottom > 0 && rect.top < window.innerHeight) {
-        const centerOffset = (rect.top + rect.height / 2) - (window.innerHeight / 2);
-        img.style.transform = `translateY(${centerOffset * -0.08}px) scale(1.08)`;
+// Setup différé après load pour ne pas bloquer first paint
+const idle = window.requestIdleCallback || function(cb) { return setTimeout(cb, 1); };
+idle(function() {
+  // Un seul IO global pour tous les .reveal
+  const revealObserver = new IntersectionObserver((entries) => {
+    for (const entry of entries) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+        revealObserver.unobserve(entry.target);
       }
-    });
-    ticking = false;
+    }
+  }, { threshold: 0.12, rootMargin: "0px 0px -80px 0px" });
+  document.querySelectorAll(".reveal").forEach(el => revealObserver.observe(el));
+
+  // Vidéo hero : sur mobile on ne la charge pas du tout (juste poster)
+  const heroVideo = document.querySelector('.hero-video');
+  const isMobile = window.matchMedia('(max-width: 767px), (pointer: coarse)').matches;
+  if (heroVideo && !isMobile) {
+    heroVideo.src = heroVideo.dataset.src;
+    heroVideo.preload = 'metadata';
+    const videoObserver = new IntersectionObserver((entries) => {
+      for (const e of entries) {
+        if (e.isIntersecting) { heroVideo.play().catch(() => {}); }
+        else { heroVideo.pause(); }
+      }
+    }, { threshold: 0.1 });
+    videoObserver.observe(heroVideo);
   }
-  window.addEventListener('scroll', () => { if (!ticking) { requestAnimationFrame(updateParallax); ticking = true; } }, { passive: true });
-  updateParallax();
-}
+
+  // Parallax desktop seulement
+  const isDesktop = window.matchMedia('(min-width: 980px)').matches;
+  const supportsParallax = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (isDesktop && supportsParallax) {
+    const parallaxImages = document.querySelectorAll('.parallax-img');
+    if (parallaxImages.length) {
+      let ticking = false;
+      function updateParallax() {
+        parallaxImages.forEach(img => {
+          const rect = img.parentElement.getBoundingClientRect();
+          if (rect.bottom > 0 && rect.top < window.innerHeight) {
+            const centerOffset = (rect.top + rect.height / 2) - (window.innerHeight / 2);
+            img.style.transform = `translateY(${centerOffset * -0.08}px) scale(1.08)`;
+          }
+        });
+        ticking = false;
+      }
+      window.addEventListener('scroll', () => { if (!ticking) { requestAnimationFrame(updateParallax); ticking = true; } }, { passive: true });
+      updateParallax();
+    }
+  }
+});
 </script>
 </body>
 </html>

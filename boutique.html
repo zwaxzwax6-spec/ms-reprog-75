@@ -5,9 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Boutique — MS REPROG 75</title>
 <meta name="description" content="Catalogue complet : 9 prestations en atelier + 5 fichiers à distance pour pros. Tarifs transparents, paiement sécurisé.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@1&family=Barlow:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preload" as="font" type="font/woff2" href="fonts/barlow-400.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="fonts/instrument-serif-italic.woff2" crossorigin>
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -398,28 +397,38 @@
   </div>
 </aside>
 
-<script src="cart.js"></script>
+<script src="cart.js" defer></script>
 <script>
 function switchBoutique(target) {
   document.querySelectorAll('.boutique-toggle-btn').forEach(b => b.classList.remove('active'));
   document.getElementById('tab-' + target).classList.add('active');
   document.querySelectorAll('.boutique-section').forEach(s => s.classList.remove('active'));
   document.getElementById('section-' + target).classList.add('active');
-  // Réveler les nouvelles cards (au cas où elles étaient déjà observées)
   document.querySelectorAll('#section-' + target + ' .reveal:not(.visible)').forEach(el => el.classList.add('visible'));
 }
+
 let _navScrolled = false;
+const navbarEl = document.getElementById("navbar");
 window.addEventListener("scroll", () => {
   const next = window.scrollY > 40;
   if (next !== _navScrolled) {
     _navScrolled = next;
-    document.getElementById("navbar").classList.toggle("scrolled", next);
+    navbarEl.classList.toggle("scrolled", next);
   }
 }, { passive: true });
-const revealObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add("visible"); revealObserver.unobserve(entry.target); } });
-}, { threshold: 0.12, rootMargin: "0px 0px -80px 0px" });
-document.querySelectorAll(".reveal").forEach(el => revealObserver.observe(el));
+
+const idle = window.requestIdleCallback || function(cb) { return setTimeout(cb, 1); };
+idle(function() {
+  const revealObserver = new IntersectionObserver((entries) => {
+    for (const entry of entries) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+        revealObserver.unobserve(entry.target);
+      }
+    }
+  }, { threshold: 0.12, rootMargin: "0px 0px -80px 0px" });
+  document.querySelectorAll(".reveal").forEach(el => revealObserver.observe(el));
+});
 </script>
 </body>
 </html>
