@@ -417,17 +417,26 @@ window.addEventListener("scroll", () => {
   }
 }, { passive: true });
 
-const idle = window.requestIdleCallback || function(cb) { return setTimeout(cb, 1); };
-idle(function() {
-  const revealObserver = new IntersectionObserver((entries) => {
-    for (const entry of entries) {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("visible");
-        revealObserver.unobserve(entry.target);
-      }
+// Reveal observer — actif IMMÉDIATEMENT
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("visible");
+      revealObserver.unobserve(entry.target);
     }
-  }, { threshold: 0.12, rootMargin: "0px 0px -80px 0px" });
-  document.querySelectorAll(".reveal").forEach(el => revealObserver.observe(el));
+  });
+}, { threshold: 0, rootMargin: "0px 0px 200px 0px" });
+document.querySelectorAll(".reveal").forEach(el => revealObserver.observe(el));
+
+// Force-check : reveals déjà dans le viewport au load deviennent visibles sans attendre un scroll
+requestAnimationFrame(() => {
+  document.querySelectorAll(".reveal:not(.visible)").forEach(el => {
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight && rect.bottom > 0) {
+      el.classList.add("visible");
+      revealObserver.unobserve(el);
+    }
+  });
 });
 </script>
 </body>
