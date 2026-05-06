@@ -69,8 +69,13 @@
 
 <script>
 sessionStorage.removeItem('msreprog_cart');
+let _navScrolled = false;
 window.addEventListener("scroll", () => {
-  document.getElementById("navbar").classList.toggle("scrolled", window.scrollY > 40);
+  const next = window.scrollY > 40;
+  if (next !== _navScrolled) {
+    _navScrolled = next;
+    document.getElementById("navbar").classList.toggle("scrolled", next);
+  }
 }, { passive: true });
 const revealObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {

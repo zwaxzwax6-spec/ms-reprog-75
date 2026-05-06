@@ -408,8 +408,13 @@ function switchBoutique(target) {
   // Réveler les nouvelles cards (au cas où elles étaient déjà observées)
   document.querySelectorAll('#section-' + target + ' .reveal:not(.visible)').forEach(el => el.classList.add('visible'));
 }
+let _navScrolled = false;
 window.addEventListener("scroll", () => {
-  document.getElementById("navbar").classList.toggle("scrolled", window.scrollY > 40);
+  const next = window.scrollY > 40;
+  if (next !== _navScrolled) {
+    _navScrolled = next;
+    document.getElementById("navbar").classList.toggle("scrolled", next);
+  }
 }, { passive: true });
 const revealObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add("visible"); revealObserver.unobserve(entry.target); } });
