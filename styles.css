@@ -1777,65 +1777,6 @@ img { max-width: 100%; display: block; }
   letter-spacing: 0.02em;
 }
 
-/* === Forms (RDV + Contact) === */
-.form-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 18px;
-  margin: 56px auto 0;
-  max-width: 640px;
-}
-.form-grid-full { grid-column: 1 / -1; }
-.field {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-.field-label {
-  font-size: 11px;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--accent);
-  font-weight: 600;
-}
-.field-input,
-.field-textarea,
-.field-select {
-  background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(255,255,255,0.08);
-  border-radius: 14px;
-  padding: 14px 18px;
-  color: #fff;
-  font-size: 15px;
-  font-family: var(--font-body);
-  transition: all 0.3s ease;
-  width: 100%;
-}
-.field-input::placeholder,
-.field-textarea::placeholder { color: var(--text-muted); }
-.field-input:focus,
-.field-textarea:focus,
-.field-select:focus {
-  outline: none;
-  border-color: var(--accent-soft);
-  background: rgba(232, 200, 117, 0.04);
-  box-shadow: 0 0 24px var(--accent-glow-deep);
-}
-.field-textarea {
-  min-height: 140px;
-  resize: vertical;
-  line-height: 1.5;
-}
-.field-select {
-  appearance: none;
-  -webkit-appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23E8C875' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 18px center;
-  padding-right: 44px;
-  cursor: pointer;
-}
-.field-select option { background: #0a0a0a; color: #fff; }
 .btn-submit {
   background: linear-gradient(135deg, var(--accent-bright) 0%, var(--accent) 50%, var(--accent-deep) 100%);
   color: #1a1305;
@@ -1856,9 +1797,6 @@ img { max-width: 100%; display: block; }
 .btn-submit:hover {
   box-shadow: 0 0 36px rgba(232, 200, 117, 0.55), inset 0 1px 1px rgba(255,255,255,0.5);
   transform: translateY(-1px);
-}
-@media (max-width: 640px) {
-  .form-grid { grid-template-columns: 1fr; gap: 14px; margin-top: 36px; }
 }
 
 /* === Two-column layout (about, contact) === */
@@ -2040,125 +1978,6 @@ img { max-width: 100%; display: block; }
   margin-bottom: 36px;
 }
 
-/* ═══════════════════════════════════════════
-   CUSTOM SELECT (dropdown stylé)
-   ═══════════════════════════════════════════ */
-.select-custom {
-  position: relative;
-  width: 100%;
-}
-.select-custom-trigger {
-  background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(255,255,255,0.08);
-  border-radius: 14px;
-  padding: 14px 18px;
-  padding-right: 44px;
-  color: #fff;
-  font-size: 15px;
-  font-family: var(--font-body);
-  transition: all 0.3s ease;
-  width: 100%;
-  cursor: pointer;
-  text-align: left;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-}
-.select-custom-trigger:hover {
-  border-color: rgba(232, 200, 117, 0.3);
-}
-.select-custom.open .select-custom-trigger {
-  border-color: var(--accent-soft);
-  background: rgba(232, 200, 117, 0.04);
-  box-shadow: 0 0 24px var(--accent-glow-deep);
-}
-.select-custom-value {
-  flex: 1;
-  text-align: left;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.select-custom-value.is-placeholder {
-  color: var(--text-muted);
-}
-.select-custom-arrow {
-  width: 14px;
-  height: 14px;
-  color: var(--accent);
-  flex-shrink: 0;
-  transition: transform 0.3s ease;
-}
-.select-custom.open .select-custom-arrow {
-  transform: rotate(180deg);
-}
-
-.select-custom-dropdown {
-  position: absolute;
-  top: calc(100% + 6px);
-  left: 0;
-  right: 0;
-  background: rgba(12, 12, 12, 0.98);
-  backdrop-filter: blur(40px);
-  -webkit-backdrop-filter: blur(40px);
-  border: 1px solid rgba(232, 200, 117, 0.25);
-  border-radius: 14px;
-  padding: 8px;
-  z-index: 30;
-  max-height: 320px;
-  overflow-y: auto;
-  opacity: 0;
-  transform: translateY(-8px);
-  pointer-events: none;
-  transition: opacity 0.25s ease, transform 0.25s ease;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.6), 0 0 0 1px rgba(232, 200, 117, 0.05);
-}
-.select-custom.open .select-custom-dropdown {
-  opacity: 1;
-  transform: translateY(0);
-  pointer-events: auto;
-}
-.select-custom-group-label {
-  font-size: 10px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--accent);
-  font-weight: 600;
-  padding: 12px 14px 6px;
-}
-.select-custom-option {
-  padding: 11px 14px;
-  font-size: 14px;
-  color: rgba(255,255,255,0.85);
-  cursor: pointer;
-  border-radius: 8px;
-  transition: all 0.15s ease;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-}
-.select-custom-option:hover {
-  background: rgba(232, 200, 117, 0.08);
-  color: #fff;
-}
-.select-custom-option.selected {
-  background: rgba(232, 200, 117, 0.15);
-  color: var(--accent);
-  font-weight: 500;
-}
-.select-custom-option.selected::after {
-  content: '';
-  width: 14px;
-  height: 14px;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23E8C875' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: center;
-}
-.select-custom-dropdown::-webkit-scrollbar { width: 6px; }
-.select-custom-dropdown::-webkit-scrollbar-track { background: transparent; }
-.select-custom-dropdown::-webkit-scrollbar-thumb { background: rgba(232, 200, 117, 0.3); border-radius: 3px; }
 
 /* ═══════════════════════════════════════════
    REFONTE OPTION A — composants ajoutés
