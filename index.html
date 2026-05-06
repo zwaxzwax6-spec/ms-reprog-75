@@ -327,26 +327,44 @@ window.addEventListener("scroll", () => {
   }
 }, { passive: true });
 
-// Reveal observer — actif IMMÉDIATEMENT (pas en idle, pour réagir au premier scroll)
-// rootMargin positif en bas → l'élément déclenche son apparition avant d'entrer pleinement dans le viewport
+// Reveal observer — queue + 1 reveal par frame pour étaler le coût compositor en burst scroll
+const _revealQueue = [];
+let _revealScheduled = false;
+function _processRevealQueue() {
+  _revealScheduled = false;
+  const el = _revealQueue.shift();
+  if (el) el.classList.add("visible");
+  if (_revealQueue.length) {
+    _revealScheduled = true;
+    requestAnimationFrame(_processRevealQueue);
+  }
+}
 const revealObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
+  for (const entry of entries) {
     if (entry.isIntersecting) {
-      entry.target.classList.add("visible");
+      _revealQueue.push(entry.target);
       revealObserver.unobserve(entry.target);
     }
-  });
+  }
+  if (!_revealScheduled && _revealQueue.length) {
+    _revealScheduled = true;
+    requestAnimationFrame(_processRevealQueue);
+  }
 }, { threshold: 0, rootMargin: "0px 0px 200px 0px" });
 document.querySelectorAll(".reveal").forEach(el => revealObserver.observe(el));
 
-// Force-check immédiat : si un .reveal est déjà dans le viewport au load (cas hero court), il devient visible sans attendre un scroll
+// Force-check au load : READ batch puis WRITE batch (pas de forced sync layout en boucle)
 requestAnimationFrame(() => {
-  document.querySelectorAll(".reveal:not(.visible)").forEach(el => {
+  const candidates = document.querySelectorAll(".reveal:not(.visible)");
+  const innerH = window.innerHeight;
+  const toReveal = [];
+  candidates.forEach(el => {
     const rect = el.getBoundingClientRect();
-    if (rect.top < window.innerHeight && rect.bottom > 0) {
-      el.classList.add("visible");
-      revealObserver.unobserve(el);
-    }
+    if (rect.top < innerH && rect.bottom > 0) toReveal.push(el);
+  });
+  toReveal.forEach(el => {
+    el.classList.add("visible");
+    revealObserver.unobserve(el);
   });
 });
 
