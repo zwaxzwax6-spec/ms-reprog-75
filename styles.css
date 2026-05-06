@@ -1170,12 +1170,35 @@ img { max-width: 100%; display: block; }
   transform: translateY(0);
 }
 
-/* Parallax doux sur les bannières image (desktop seulement) */
-/* will-change requis ici car l'élément est transformé en continu à chaque scroll frame */
+/* Parallax remplacé par transform CSS static — pas de handler scroll JS, pas de will-change permanent */
 @media (min-width: 980px) {
   .parallax-img {
-    transition: transform 0.1s linear;
-    will-change: transform;
+    transform: scale(1.05);
+  }
+}
+
+/* Mobile : désactivation des effets compositor coûteux (filter:blur transitions + backdrop-filter sur fixed)
+   Cause : long frames 200-300ms en burst scroll mesurées via Playwright wheel events natifs.
+   Desktop intact. */
+@media (max-width: 767px) {
+  .anim-blur,
+  .anim-image,
+  .stagger-grid > * {
+    filter: none !important;
+    transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  }
+  .reveal.visible .anim-blur,
+  .reveal.visible .anim-image,
+  .reveal.visible .stagger-grid > * {
+    filter: none !important;
+  }
+  /* backdrop-filter sur élément fixed = recompute every scroll frame → stall compositor mobile */
+  .liquid-glass,
+  .nav-cart-mobile {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background: rgba(0, 0, 0, 0.55);
   }
 }
 

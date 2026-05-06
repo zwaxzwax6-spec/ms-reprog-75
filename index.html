@@ -380,27 +380,7 @@ if (heroVideo) {
   videoObserver.observe(heroVideo);
 }
 
-// Parallax desktop seulement (différé au load complet — non critique pour le rendu)
-window.addEventListener('load', () => {
-  const isDesktop = window.matchMedia('(min-width: 980px)').matches;
-  const supportsParallax = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (!isDesktop || !supportsParallax) return;
-  const parallaxImages = document.querySelectorAll('.parallax-img');
-  if (!parallaxImages.length) return;
-  let ticking = false;
-  function updateParallax() {
-    parallaxImages.forEach(img => {
-      const rect = img.parentElement.getBoundingClientRect();
-      if (rect.bottom > 0 && rect.top < window.innerHeight) {
-        const centerOffset = (rect.top + rect.height / 2) - (window.innerHeight / 2);
-        img.style.transform = `translateY(${centerOffset * -0.08}px) scale(1.08)`;
-      }
-    });
-    ticking = false;
-  }
-  window.addEventListener('scroll', () => { if (!ticking) { requestAnimationFrame(updateParallax); ticking = true; } }, { passive: true });
-  updateParallax();
-});
+// Parallax retiré : remplacé par transform CSS static sur .parallax-img (préserve l'échelle 1.05 sans handler scroll).
 </script>
 </body>
 </html>
