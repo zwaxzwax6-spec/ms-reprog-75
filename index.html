@@ -12,23 +12,18 @@
 <body>
 
 <!-- ═══ NAVBAR ═══ -->
+<button class="nav-cart-mobile" onclick="openCartDrawer()" aria-label="Ouvrir le panier">
+  <svg class="nav-cart-mobile-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+  <span class="nav-cart-mobile-count">0</span>
+</button>
 <nav class="navbar" id="navbar">
-  <button class="nav-cart-mobile" onclick="openCartDrawer()" aria-label="Ouvrir le panier">
-    <svg class="nav-cart-mobile-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
-    <span class="nav-cart-mobile-count">0</span>
-  </button>
-  <div class="nav-center">
-    <div class="nav-pill liquid-glass">
-      <a href="index.html" class="nav-link" aria-current="page">Accueil</a>
-      <a href="boutique.html" class="nav-link">Boutique</a>
-      <a href="boutique.html" class="btn-solid">Voir la boutique
-        <svg class="icon-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-      </a>
-    </div>
+  <div class="nav-pill">
+    <a href="index.html" class="nav-link" aria-current="page">Accueil</a>
+    <a href="boutique.html" class="nav-link">Boutique</a>
+    <a href="boutique.html" class="btn-solid">Voir la boutique
+      <svg class="icon-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+    </a>
   </div>
-  <a href="boutique.html" class="btn-solid btn-solid-mobile">Boutique
-    <svg class="icon-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-  </a>
 </nav>
 
 <button class="cart-button" onclick="openCartDrawer()" aria-label="Ouvrir le panier" style="display:none;">
@@ -42,28 +37,26 @@
     src="https://res.cloudinary.com/duia2hrlv/video/upload/v1777925956/hf_20260504_201505_287623ab-7941-4812-9215-9272377e604a_wxrno3.mp4">
   </video>
   <div class="hero-overlay"></div>
-  <div class="hero-overlay-left"></div>
+  <div class="hero-overlay-bottom"></div>
   <div class="hero-content">
-    <div class="hero-eyebrow liquid-glass">
+    <div class="hero-eyebrow">
       <span class="eyebrow-dot"></span>
       <span class="eyebrow-label">Garantie à vie</span>
       <span class="eyebrow-sep">·</span>
       <span class="eyebrow-meta">Reprogrammation moteur sur logiciels officiels</span>
     </div>
     <h1 class="hero-title" id="heroTitle"></h1>
-    <p class="hero-sub anim-fade-up" style="animation-delay: 1.2s;">
-      Reprogrammation moteur, dépollution, Stage 1 à 3, E85.<br>Atelier à Morangis (91) + intervention urgence 24/7.
-    </p>
-    <div class="hero-cta-row anim-fade-up" style="animation-delay: 1.4s;">
+    <p class="hero-sub">Reprogrammation moteur, dépollution, Stage 1 à 3, E85.<br>Atelier à Morangis (91) + intervention urgence 24/7.</p>
+    <div class="hero-cta-row">
       <a href="boutique.html" class="btn-solid">Voir la boutique
         <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
       </a>
-      <a href="tel:+33601946197" class="btn-glass liquid-glass-strong">
+      <a href="tel:+33601946197" class="btn-glass">
         <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
         Appeler l'atelier
       </a>
     </div>
-    <a href="tel:+33601946197" class="hero-tel anim-fade-up" style="animation-delay: 1.6s;">
+    <a href="tel:+33601946197" class="hero-tel">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
       <span class="hero-tel-label">Urgence 24/7</span>
       <span class="hero-tel-num">+33 6 01 94 61 97</span>
@@ -71,34 +64,34 @@
   </div>
 </section>
 
-<!-- ═══ SECTION 2 : TRUST BADGES ═══ -->
+<!-- ═══ SECTION 2 : TRUST BAND ═══ -->
 <section class="section-trust reveal">
   <div class="trust-grid">
-    <div class="trust-pill liquid-glass anim-up" data-stagger="1">
+    <div class="trust-pill anim-up" data-stagger="1">
       <svg class="trust-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 6v6c0 5 3.5 9 8 10 4.5-1 8-5 8-10V6z"/><path d="m9 12 2 2 4-4"/></svg>
       <span class="trust-label">Logiciels officiels</span>
     </div>
-    <div class="trust-pill liquid-glass anim-up" data-stagger="2">
+    <div class="trust-pill anim-up" data-stagger="2">
       <svg class="trust-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
       <span class="trust-label">Garantie à vie</span>
     </div>
-    <div class="trust-pill liquid-glass anim-up" data-stagger="3">
+    <div class="trust-pill anim-up" data-stagger="3">
       <svg class="trust-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
       <span class="trust-label">Intervention 24h/24, 7j/7</span>
     </div>
   </div>
 </section>
 
-<!-- ═══ SECTION 3 : 3 PRESTATIONS PHARES ═══ -->
+<!-- ═══ SECTION 3 : PRESTATIONS PHARES ═══ -->
 <section class="section reveal" id="prestations">
   <span class="section-eyebrow anim-up" data-stagger="1">Prestations phares</span>
-  <h2 class="section-heading anim-blur" data-stagger="2">Trois interventions qui changent tout.</h2>
+  <h2 class="section-heading anim-up" data-stagger="2">Trois interventions qui changent tout.</h2>
   <p class="section-lead anim-up" data-stagger="3">
     Nos prestations les plus demandées. Pour le reste — Stage 2, IMMO OFF, clonage de calculateur, fichiers à distance pour pros — tout le catalogue est dans la <a href="boutique.html" class="link-accent-underline">boutique</a>.
   </p>
 
-  <div class="prestations-banner anim-image" data-stagger="4">
-    <img src="img-03-engine-closeup.png" alt="Gros plan moteur haute performance" class="prestations-banner-img parallax-img">
+  <div class="prestations-banner anim-up" data-stagger="4">
+    <img src="img-03-engine-closeup.png" alt="Gros plan moteur haute performance" class="prestations-banner-img">
     <div class="prestations-banner-overlay"></div>
     <div class="prestations-banner-caption">
       <span class="prestations-banner-label">— Précision mécanique</span>
@@ -107,7 +100,7 @@
 
   <div class="prestations-grid stagger-grid">
 
-    <article class="prestation-card liquid-glass-strong">
+    <article class="prestation-card">
       <div class="prestation-mockup">
         <div class="prestation-mockup-glow"></div>
         <svg viewBox="0 0 320 140" xmlns="http://www.w3.org/2000/svg">
@@ -130,7 +123,7 @@
       </div>
     </article>
 
-    <article class="prestation-card liquid-glass-strong">
+    <article class="prestation-card">
       <div class="prestation-mockup">
         <div class="prestation-mockup-glow"></div>
         <svg viewBox="0 0 320 140" xmlns="http://www.w3.org/2000/svg">
@@ -155,7 +148,7 @@
       </div>
     </article>
 
-    <article class="prestation-card liquid-glass-strong">
+    <article class="prestation-card">
       <div class="prestation-mockup">
         <div class="prestation-mockup-glow"></div>
         <svg viewBox="0 0 320 140" xmlns="http://www.w3.org/2000/svg">
@@ -181,30 +174,29 @@
 <!-- ═══ SECTION 4 : POURQUOI NOUS ═══ -->
 <section class="section reveal" id="pourquoi">
   <span class="section-eyebrow anim-up" data-stagger="1">Pourquoi nous choisir</span>
-  <h2 class="section-heading anim-blur" data-stagger="2">Le moteur de votre voiture mérite ce niveau d'exigence.</h2>
+  <h2 class="section-heading anim-up" data-stagger="2">Le moteur de votre voiture mérite ce niveau d'exigence.</h2>
   <p class="section-lead anim-up" data-stagger="3">
     MS REPROG 75 est une équipe de professionnels passionnés, basée en Île-de-France. Notre approche repose sur un principe simple : respecter la mécanique avant tout.
   </p>
 
   <div class="why-grid stagger-grid">
-    <div class="why-card liquid-glass-strong">
+    <div class="why-card">
       <svg class="why-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 6v6c0 5 3.5 9 8 10 4.5-1 8-5 8-10V6z"/><path d="m9 12 2 2 4-4"/></svg>
       <h4 class="why-card-title">Logiciels officiels.</h4>
       <p class="why-card-desc">Outils constructeur de dernière génération. Aucun bricolage : nos cartographies sont conçues pour optimiser sans dégrader la fiabilité du moteur.</p>
     </div>
-    <div class="why-card liquid-glass-strong">
+    <div class="why-card">
       <svg class="why-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
       <h4 class="why-card-title">Garantie à vie.</h4>
       <p class="why-card-desc">Toutes nos prestations en atelier sont garanties à vie. Si un problème survient lié à notre intervention, on le règle. C'est notre engagement.</p>
     </div>
-    <div class="why-card liquid-glass-strong">
+    <div class="why-card">
       <svg class="why-card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
       <h4 class="why-card-title">Intervention 24/7.</h4>
       <p class="why-card-desc">Atelier à Morangis (91) pour les RDV en semaine. Et déplacement partout en France à toute heure pour les urgences. Particuliers et pros.</p>
     </div>
   </div>
 
-  <!-- TODO HOUDINI: remplace par le vrai lien Google Maps de la fiche atelier -->
   <div class="google-reviews-cta anim-up" data-stagger="4">
     <a href="https://www.google.com/maps/search/MS+REPROG+75+Morangis" target="_blank" rel="noopener">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
@@ -217,10 +209,10 @@
 <section class="cta-final reveal">
   <div class="cta-final-content">
     <div class="cta-final-eyebrow anim-up" data-stagger="1">Prêt à passer à l'action</div>
-    <h2 class="cta-final-title anim-blur" data-stagger="2">Votre véhicule mérite la précision.</h2>
+    <h2 class="cta-final-title anim-up" data-stagger="2">Votre véhicule mérite la précision.</h2>
     <p class="cta-final-sub anim-up" data-stagger="3">Que ce soit pour un Stage 1, une dépollution complète ou une intervention urgente, on s'occupe de tout. Réponse rapide, accueil chaleureux.</p>
     <div class="cta-final-row anim-up" data-stagger="4">
-      <a href="boutique.html" class="btn-solid" style="padding: 14px 26px; font-size: 14px;">Voir nos prestations
+      <a href="boutique.html" class="btn-solid" style="padding:14px 26px; font-size:14px;">Voir nos prestations
         <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
       </a>
       <a href="tel:+33601946197" class="cta-final-tel">
@@ -231,21 +223,16 @@
   </div>
 </section>
 
-<!-- ═══ FOOTER (avec contact intégré) ═══ -->
+<!-- ═══ FOOTER ═══ -->
 <footer class="footer reveal" id="contact">
   <div class="footer-top">
     <div class="footer-brand-block anim-up" data-stagger="1">
       <h3 class="footer-brand">MS REPROG 75</h3>
       <p class="footer-tagline">L'art de la performance sur mesure.</p>
       <div class="footer-cta-row">
-        <a href="tel:+33601946197">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-          06 01 94 61 97
-        </a>
-        <a href="mailto:msreprog75@gmail.com">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-          Email
-        </a>
+        <a href="tel:+33601946197"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>06 01 94 61 97</a>
+        <a href="https://wa.me/33652751882?text=Bonjour%2C%20je%20vous%20contacte%20depuis%20votre%20site." target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>WhatsApp</a>
+        <a href="mailto:msreprog75@gmail.com"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>Email</a>
       </div>
     </div>
     <div class="footer-col anim-up" data-stagger="2">
@@ -301,6 +288,7 @@
 
 <script src="cart.js" defer></script>
 <script>
+// Hero title word-by-word fade (opacity + translateY uniquement)
 (function() {
   const title = "Le Moteur Que Vous Méritez";
   const el = document.getElementById("heroTitle");
@@ -309,7 +297,7 @@
   words.forEach((word, i) => {
     const span = document.createElement("span");
     span.className = "blur-word";
-    span.style.animationDelay = (0.3 + i * 0.12) + "s";
+    span.style.animationDelay = (0.3 + i * 0.10) + "s";
     span.textContent = word;
     frag.appendChild(span);
     if (i < words.length - 1) frag.appendChild(document.createTextNode(" "));
@@ -317,17 +305,7 @@
   el.appendChild(frag);
 })();
 
-let _navScrolled = false;
-const navbarEl = document.getElementById("navbar");
-window.addEventListener("scroll", () => {
-  const next = window.scrollY > 40;
-  if (next !== _navScrolled) {
-    _navScrolled = next;
-    navbarEl.classList.toggle("scrolled", next);
-  }
-}, { passive: true });
-
-// Reveal observer — queue + 1 reveal par frame pour étaler le coût compositor en burst scroll
+// Reveal observer — queue + 1 reveal par frame (compositor-safe)
 const _revealQueue = [];
 let _revealScheduled = false;
 function _processRevealQueue() {
@@ -353,7 +331,7 @@ const revealObserver = new IntersectionObserver((entries) => {
 }, { threshold: 0, rootMargin: "0px 0px 200px 0px" });
 document.querySelectorAll(".reveal").forEach(el => revealObserver.observe(el));
 
-// Force-check au load : READ batch puis WRITE batch (pas de forced sync layout en boucle)
+// Force-check au load : READ batch puis WRITE batch
 requestAnimationFrame(() => {
   const candidates = document.querySelectorAll(".reveal:not(.visible)");
   const innerH = window.innerHeight;
@@ -368,19 +346,17 @@ requestAnimationFrame(() => {
   });
 });
 
-// Pause hero video when scrolled out of view (libère décodeur GPU/CPU sur mobile)
+// Pause hero video off-screen (libère décodeur mobile)
 const heroVideo = document.querySelector('.hero-video');
 if (heroVideo) {
   const videoObserver = new IntersectionObserver((entries) => {
     entries.forEach(e => {
-      if (e.isIntersecting) { heroVideo.play().catch(() => {}); }
-      else { heroVideo.pause(); }
+      if (e.isIntersecting) heroVideo.play().catch(() => {});
+      else heroVideo.pause();
     });
   }, { threshold: 0.1 });
   videoObserver.observe(heroVideo);
 }
-
-// Parallax retiré : remplacé par transform CSS static sur .parallax-img (préserve l'échelle 1.05 sans handler scroll).
 </script>
 </body>
 </html>
